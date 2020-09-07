@@ -30,7 +30,7 @@
         <!-- Navbar finish -->
         <h2> {{ tournament.tournament_name }} </h2>
         <h5> {{ tournament.date }} </h5>
-        <h5> {% if tournament.lang == 'bn'%} Bangla {%elif tournament.lang == 'en'%} English {% endif %} - {% if tournament.format == 'ap'%} Asian Parliamentary {%elif tournament.format == 'bp'%} British Parliamentary {% endif %}</h5>
+        <h5> {% if tournament.lang == 'bn'%} Bangla {%elif tournament.lang == 'en'%} English {% endif %} - {% if tournament.format == 'ap'%} Asian Parliamentary {%elif tournament.format == 'bp'%} British Parliamentary {%elif tournament.format == '3v3'%} 3 on 3 {% endif %} </h5>
         <table class="table table-striped ">
             <thead class="thead-dark">
             <tr>

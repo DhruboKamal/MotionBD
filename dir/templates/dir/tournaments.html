@@ -43,7 +43,7 @@
                 <tr>
                     <td> {{ tourni.date }} </td>
                     <td> <a href="{% url 'tournament_details'  tourni.id  %}">{{ tourni.tournament_name }} </a> </td>
-                    <td> {% if tourni.lang == 'bn'%} Bangla {%elif tourni.lang == 'en'%} English {% endif %} - {% if tourni.format == 'ap'%} Asian Parliamentary {%elif tourni.format == 'bp'%} British Parliamentary {% endif %} </td>
+                    <td> {% if tourni.lang == 'bn'%} Bangla {%elif tourni.lang == 'en'%} English {% endif %} - {% if tourni.format == 'ap'%} Asian Parliamentary {%elif tourni.format == 'bp'%} British Parliamentary {%elif tourni.format == '3v3'%} 3 on 3 {% endif %} </td>
                 </tr>
             {% endfor %}
             </tbody>

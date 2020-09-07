@@ -22,6 +22,5 @@ urlpatterns = [
     path('tournaments/', views.tournaments, name='tournaments'),
     path('tournaments/<int:tournament_id>/', views.tournament_details, name='tournament_details'),
     path('', views.index, name='index'),
-    #http://127.0.0.1:8000/?lang=bn&Format=any
 ]
 

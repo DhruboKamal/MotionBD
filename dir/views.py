@@ -6,7 +6,12 @@ from .models import  Tournament
 
 def index(request):
     all_tournaments = Tournament.objects.all().order_by('-date')
-
+    ln = request.GET.get('Lang')
+    fmt = request.GET.get('Format')
+    if ln and ln != 'both':
+        all_tournaments = all_tournaments.filter(lang=ln).order_by('-date')
+    if fmt and fmt != 'all':
+        all_tournaments = all_tournaments.filter(format=fmt).order_by('-date')
     return render(request, 'dir/index.html', {'all_tournaments': all_tournaments, })
 
 

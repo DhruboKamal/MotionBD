@@ -30,75 +30,80 @@
         <!-- Navbar finish -->
         <h2> Recent Motions </h2>
         <!-- Filter option starts -->
-        <form method="GET">
+        <form action="" method="GET">
             Select Language:
-            <select name="lang">
-                <option value="both"> Any </option>
+            <select name="Lang">
+                <option value="both"> Both </option>
                 <option value="bn"> Bangla </option>
                 <option value="en"> English </option>
-            </select>&#9
+            </select>
             Select Format:
             <select name="Format">
-                <option value="any"> Any </option>
+                <option value="all"> All </option>
                 <option value="ap"> Asian Parliamentary </option>
                 <option value="bp"> British Parliamentary </option>
                 <option value="3v3"> 3 on 3 </option>
             </select>&#9
-            <input type="submit" value="Filter">&#9
+            <input type="submit" value="Filter">
             <input type="reset"><br><br>
-            <!-- Filter option finishes-->
-        <table class="table table-striped ">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col"> Date </th>
-                <th scope="col"> Tournament  </th>
-                <th scope="col"> Round </th>
-                <th scope="col"> Motion </th>
-                <th scope="col"> </th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for tourni in all_tournaments %}
-                {% for motion in tourni.motion_set.all %}
-                    <tr>
-                        <td> {{ motion.tournament.date |date:"Y-m-d" }} </td>
+        </form>
+        <!-- Filter option finishes-->
+        {% if all_tournaments %}
+            <table class="table table-striped ">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col"> Date </th>
+                    <th scope="col"> Tournament  </th>
+                    <th scope="col"> Round </th>
+                    <th scope="col"> Motion </th>
+                    <th scope="col"> </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tourni in all_tournaments %}
+                    {% for motion in tourni.motion_set.all %}
+                        <tr>
+                            <td> {{ motion.tournament.date |date:"Y-m-d" }} </td>
 
-                        <td> <a href="{% url 'tournament_details' motion.tournament.id %}"> {{ motion.tournament }} </a> </td>
-                        <td> {{ motion.round }} </td>
-                        <td> {{ motion.motion_text }} </td>
-                        <td>
-                        {% if motion.info_slide.strip  %}
-                            <!-- Venture Starts -->
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#id{{ motion.id }}">
-                                Info_slide
-                            </button>
+                            <td> <a href="{% url 'tournament_details' motion.tournament.id %}"> {{ motion.tournament }} </a> </td>
+                            <td> {{ motion.round }} </td>
+                            <td> {{ motion.motion_text }} </td>
+                            <td>
+                            {% if motion.info_slide.strip  %}
+                                <!-- Venture Starts -->
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-light" data-toggle="modal" data-target="#id{{ motion.id }}">
+                                    Info_slide
+                                </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="id{{ motion.id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered ">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="staticBackdropLabel">Info Slide</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="id{{ motion.id }}" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">Info Slide</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p style="size: 1.2rem">{{ motion.info_slide }}</p>
+                                            </div>
+
                                         </div>
-                                        <div class="modal-body">
-                                            <p style="size: 1.2rem">{{ motion.info_slide }}</p>
-                                        </div>
-
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Venture Finishes -->
-                        {% endif %}
-                        </td>
-                    </tr>
+                                <!-- Venture Finishes -->
+                            {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        {% else %}
+            <h6> No motion to show , <a href="{% url 'index' %}"> Go back to home </a> </h6>
+        {% endif %}
     </div>
 
     <!-- Optional JavaScript -->
