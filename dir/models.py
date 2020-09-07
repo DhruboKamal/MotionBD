@@ -7,6 +7,9 @@ class Tournament (models.Model):
     format = models.CharField(max_length=3)
     date = models.DateField()
 
+    def year(self):
+        return self.year
+
     def __str__(self):
         return self.tournament_name
 
