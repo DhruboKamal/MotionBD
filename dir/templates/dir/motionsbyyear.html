@@ -1,9 +1,8 @@
 {% extends 'dir/base.html' %}
 {% block content %}
-<!-- Navbar finish -->
-<h3> Recent Debating Motions from Bangladeshi Circuit </h3>
+<h2> All Motions of {{ yr }} </h2>
 <!-- Filter option starts -->
-<form action="" method="GET">
+<form action="" method="GET" form-inline>
     <p> Tournament Language:
     <select name="Lang">
         <option value="both"> Both </option>
@@ -30,6 +29,7 @@
 </div>
 {% endif %}
 {% endif %}
+
 <!-- Filter option finishes-->
 {% if all_tournaments %}
     <table class="table table-striped ">
@@ -85,13 +85,7 @@
         </tbody>
     </table>
 {% else %}
-    <h6> No motion to show , <a href="{% url 'index' %}"> Go back to home </a> </h6>
+    <h6> No motion to show </h6>
 {% endif %}
-
-<h5> View motions by year </h5>
-{% for year in all_years %}
-    <a href="{% url 'motion by year' year %}"> view motions of  {{ year }} </a></br>
-{% endfor %}
-</div>
-
+    <h6><a href="{% url 'index' %}"> Go back to home </a></h6>
 {% endblock %}

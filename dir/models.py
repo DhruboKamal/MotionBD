@@ -3,8 +3,8 @@ from django.db import models
 
 class Tournament (models.Model):
     tournament_name = models.CharField(max_length=250)
-    lang = models.CharField(max_length=2)
-    format = models.CharField(max_length=3)
+    lang = models.CharField(max_length=2, choices=[('bn', 'Bangla'), ('en', 'English')])
+    format = models.CharField(max_length=3, choices=[('ap', 'AP'), ('bp', 'BP'), ('3v3', '3v3')])
     date = models.DateField()
 
     def year(self):

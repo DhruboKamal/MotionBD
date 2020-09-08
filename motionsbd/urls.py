@@ -22,5 +22,6 @@ urlpatterns = [
     path('tournaments/', views.tournaments, name='tournaments'),
     path('tournaments/<int:tournament_id>/', views.tournament_details, name='tournament_details'),
     path('', views.index, name='index'),
+    path('motions/year/<int:yr>', views.motion_by_year, name='motion by year')
 ]
 
