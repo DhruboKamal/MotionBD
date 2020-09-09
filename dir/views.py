@@ -4,32 +4,33 @@ from .models import Tournament,Motion
 
 
 def index(request):
-    all_tournaments = Tournament.objects.all().order_by('-date')
+    all_motions = Motion.objects.all().order_by('-tournament__date')
     yrs = []
-    for i in all_tournaments.values_list('date__year', flat=True).distinct():
+    for i in all_motions.values_list('tournament__date__year', flat=True).distinct():
         if not i in yrs:
             yrs.append(i)
 
     ln = request.GET.get('Lang')
     fmt = request.GET.get('Format')
     if ln and ln != 'both':
-        all_tournaments = all_tournaments.filter(lang=ln).order_by('-date')
+        all_motions = all_motions.filter(tournament__lang=ln).order_by('-tournament__date')
     if fmt and fmt != 'all':
-        all_tournaments = all_tournaments.filter(format=fmt).order_by('-date')
+        all_motions = all_motions.filter(tournament__lang=ln).order_by('-tournament__date')
 
-    context = {'all_tournaments': all_tournaments, 'all_years': yrs, 'ln': ln, 'fmt': fmt}
+    context = {'all_motions': all_motions, 'ln': ln, 'fmt': fmt, 'all_years': yrs}
     return render(request, 'dir/index.html', context)
 
 
 def motion_by_year(request, yr):
-    all_tournaments = Tournament.objects.filter(date__year=yr).order_by('-date')
+    all_motions = Motion.objects.all().order_by('-tournament__date')
     ln = request.GET.get('Lang')
     fmt = request.GET.get('Format')
     if ln and ln != 'both':
-        all_tournaments = all_tournaments.filter(lang=ln).order_by('-date')
+        all_motions = all_motions.filter(tournament__lang=ln).order_by('-tournament__date')
     if fmt and fmt != 'all':
-        all_tournaments = all_tournaments.filter(format=fmt).order_by('-date')
-    context = {'all_tournaments': all_tournaments, 'ln': ln, 'fmt': fmt, 'yr':yr}
+        all_motions = all_motions.filter(tournament__lang=ln).order_by('-tournament__date')
+
+    context = {'all_motions': all_motions, 'ln': ln, 'fmt': fmt}
     return render(request, 'dir/motionsbyyear.html', context)
 
 
@@ -54,15 +55,17 @@ def tournament_details(request, tournament_id):
 
 
 def search(request):
-    all_tournaments = Tournament.objects.all()
+    all_motions = Motion.objects.all().order_by('-tournament__date')
     ln = request.GET.get('Lang')
     fmt = request.GET.get('Format')
-    keyword = request.GET.get('keyword')
+    kw = request.GET.get('KeyWord')
     if ln and ln != 'both':
-        all_tournaments = all_tournaments.filter(lang=ln).order_by('-date')
+        all_motions = all_motions.filter(tournament__lang=ln)
     if fmt and fmt != 'all':
-        all_tournaments = all_tournaments.filter(format=fmt).order_by('-date')
-    context = {'all_tournaments': all_tournaments, 'ln': ln, 'fmt': fmt}
+        all_motions = all_motions.filter(tournament__lang=ln)
+    if kw:
+        all_motions = all_motions.filter(motion_text__contains=kw)
+    context = {'all_motions': all_motions, 'ln': ln, 'fmt': fmt}
     return render(request, 'dir/search.html', context)
 
 

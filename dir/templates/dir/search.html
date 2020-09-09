@@ -1,13 +1,37 @@
 {% extends 'dir/base.html' %}
 {% block content %}
-<div class="jumbotron">
+<div class="card">
     <div class="container">
-        <h1 class="display-4">Search Motions</h1>
+        <h3 class="display-4">Search Motions</h3>
         <p class="lead">Search for motions by keyword, category, or tournament.</p>
         <!-- Search form -->
-        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        <form action="" method="GET" class="form">
+            <p> Language:
+                <select name="Lang" class="">
+                    <option value="both"> Both </option>
+                    <option value="bn"> Bangla </option>
+                    <option value="en"> English </option>
+                </select>
+                Format:
+                <select name="Format" class="">
+                    <option value="all"> All </option>
+                    <option value="ap"> AP </option>
+                    <option value="bp"> BP </option>
+                    <option value="3v3"> 3v3 </option>
+                </select>
+            </p>
+            <input class="form-control" type="text" name="KeyWord" placeholder="Search" aria-label="Search">
+            <!-- input type="submit" value="Filter" -->
+            <br><button type="submit" class="btn btn-success"> Search </button>
+
+            <br><br>
+        </form>
+
     </div>
 </div>
+<div>
+Search Results:
+{% include 'dir/motiontable.html' %}
+</div>
 
-    {% include 'dir/motiontable.html' %}
 {% endblock %}

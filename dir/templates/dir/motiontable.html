@@ -1,4 +1,4 @@
-{% if all_tournaments %}
+{% if all_motions %}
     <table class="table table-striped ">
         <thead class="thead-dark">
         <tr>
@@ -10,12 +10,11 @@
         </tr>
         </thead>
         <tbody>
-        {% for tourni in all_tournaments %}
-            {% for motion in tourni.motion_set.all %}
+        {% for motion in all_motions %}
                 <tr>
                     <td> {{ motion.tournament.date |date:"Y-m-d" }} </td>
 
-                    <td> <a href="{% url 'tournament_details' motion.tournament.id %}"> {{ motion.tournament }} </a> </td>
+                    <td> <a href="#"> {{ motion.tournament }} </a> </td>
                     <td> {{ motion.round }} </td>
                     <td> {{ motion.motion_text }} </td>
                     <td>
@@ -48,7 +47,6 @@
                     </td>
                 </tr>
             {% endfor %}
-        {% endfor %}
         </tbody>
     </table>
 {% else %}
