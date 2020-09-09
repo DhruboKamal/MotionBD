@@ -1,0 +1,13 @@
+{% extends 'dir/base.html' %}
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">Search Motions</h1>
+        <p class="lead">Search for motions by keyword, category, or tournament.</p>
+        <!-- Search form -->
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+    </div>
+</div>
+
+    {% include 'dir/motiontable.html' %}
+{% endblock %}

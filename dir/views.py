@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
-from .models import Tournament
+from .models import Tournament,Motion
 
 
 def index(request):
@@ -16,7 +16,8 @@ def index(request):
         all_tournaments = all_tournaments.filter(lang=ln).order_by('-date')
     if fmt and fmt != 'all':
         all_tournaments = all_tournaments.filter(format=fmt).order_by('-date')
-    context = {'all_tournaments': all_tournaments, 'all_years': yrs, 'ln': ln ,'fmt': fmt}
+
+    context = {'all_tournaments': all_tournaments, 'all_years': yrs, 'ln': ln, 'fmt': fmt}
     return render(request, 'dir/index.html', context)
 
 
@@ -50,3 +51,18 @@ def tournament_details(request, tournament_id):
     except 'Tournament not found':
         raise Http404("Tournament not found")
     return render(request, 'dir/tournament_details.html', {'tournament': tournament})
+
+
+def search(request):
+    all_tournaments = Tournament.objects.all()
+    ln = request.GET.get('Lang')
+    fmt = request.GET.get('Format')
+    keyword = request.GET.get('keyword')
+    if ln and ln != 'both':
+        all_tournaments = all_tournaments.filter(lang=ln).order_by('-date')
+    if fmt and fmt != 'all':
+        all_tournaments = all_tournaments.filter(format=fmt).order_by('-date')
+    context = {'all_tournaments': all_tournaments, 'ln': ln, 'fmt': fmt}
+    return render(request, 'dir/search.html', context)
+
+

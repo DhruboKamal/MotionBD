@@ -22,3 +22,4 @@ class Motion (models.Model):
 
     def __str__(self):
         return self.round + '  -  ' + self.motion_text
+
