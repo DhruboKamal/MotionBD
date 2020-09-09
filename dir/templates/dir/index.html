@@ -3,33 +3,7 @@
 <!-- Navbar finish -->
 <h3> Recent Debating Motions from Bangladeshi Circuit </h3>
 <!-- Filter option starts -->
-<form action="" method="GET">
-    <p> Tournament Language:
-    <select name="Lang">
-        <option value="both"> Both </option>
-        <option value="bn"> Bangla </option>
-        <option value="en"> English </option>
-    </select>
-    Select Format:
-    <select name="Format">
-        <option value="all"> All </option>
-        <option value="ap"> Asian Parliamentary </option>
-        <option value="bp"> British Parliamentary </option>
-        <option value="3v3"> 3 on 3 </option>
-    </select>
-    </p>
-    <!-- input type="submit" value="Filter" -->
-    <button type="submit" class="btn btn-sm btn-outline-secondary"> Filter Recent motions </button>
-
-    <br><br>
-</form>
-{% if ln != 'both' or fmt != 'all' %}
-{% if ln != None or fmt != None %}
-<div class="alert alert-secondary" role="alert">
-    Showing only {% if ln == 'bn' %} Bangla {% elif ln == 'en' %} English {% elif fmt == 'ap' %} Asian Parliamentary {% elif fmt == 'bp' %} British Parliamentary {% elif fmt == '3v3' %} 3v3 {% endif %} motions.
-</div>
-{% endif %}
-{% endif %}
+{% include 'dir/filter.html' %}
 <!-- Filter option finishes-->
 {% if all_tournaments %}
     <table class="table table-striped ">
