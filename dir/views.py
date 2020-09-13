@@ -15,7 +15,7 @@ def index(request):
     if ln and ln != 'both':
         all_motions = all_motions.filter(tournament__lang=ln).order_by('-tournament__date')
     if fmt and fmt != 'all':
-        all_motions = all_motions.filter(tournament__lang=ln).order_by('-tournament__date')
+        all_motions = all_motions.filter(tournament__format=ln).order_by('-tournament__date')
 
     context = {'all_motions': all_motions, 'ln': ln, 'fmt': fmt, 'all_years': yrs}
     return render(request, 'dir/index.html', context)
@@ -28,7 +28,7 @@ def motion_by_year(request, yr):
     if ln and ln != 'both':
         all_motions = all_motions.filter(tournament__lang=ln).order_by('-tournament__date')
     if fmt and fmt != 'all':
-        all_motions = all_motions.filter(tournament__lang=ln).order_by('-tournament__date')
+        all_motions = all_motions.filter(tournament__format=ln).order_by('-tournament__date')
 
     context = {'all_motions': all_motions, 'ln': ln, 'fmt': fmt}
     return render(request, 'dir/motionsbyyear.html', context)
