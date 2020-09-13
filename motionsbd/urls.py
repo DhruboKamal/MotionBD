@@ -23,6 +23,8 @@ urlpatterns = [
     path('tournaments/', views.tournaments, name='tournaments'),
     path('tournaments/<int:tournament_id>/', views.tournament_details, name='tournament_details'),
     path('search', views.search, name='search'),
-    path('motions/year/<int:yr>', views.motion_by_year, name='motion by year')
+    path('motions/year/<int:yr>', views.motion_by_year, name='motion by year'),
+    path('categories', views.categories, name='categories'),
+    path('categories/<int:category_id>', views.category_all, name='category_all'),
 ]
 

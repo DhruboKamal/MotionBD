@@ -1,0 +1,7 @@
+{% extends 'dir/base.html' %}
+{% block content %}
+<h3> All {{ category }} motions </h3>
+    {% include 'dir/filter.html' %}
+    {% include 'dir/motiontable.html' %}
+
+{% endblock %}

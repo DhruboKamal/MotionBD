@@ -14,11 +14,20 @@ class Tournament (models.Model):
         return self.tournament_name
 
 
+class Category(models.Model):
+    category_text = models.CharField(max_length=50)
+    alt_text = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.category_text
+
+
 class Motion (models.Model):
     motion_text = models.CharField(max_length=1000)
     info_slide = models.CharField(max_length=9000, blank=True)
-    tournament = models.ForeignKey(Tournament, on_delete= models.CASCADE)
+    tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     round = models.CharField(max_length=30)
+    category = models.ForeignKey(Category,on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.round + '  -  ' + self.motion_text

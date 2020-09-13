@@ -1,0 +1,22 @@
+{% extends 'dir/base.html' %}
+{% block content %}
+<h3> Browse all Categories </h3>
+<div class='row'>
+{% for ctg in all_categories %}
+
+    <div class="col col-md-3 col-sm-4">
+    <a href="{% url 'category_all' ctg.pk %}">
+
+        <div class="card" style="">
+            <img src="https://www.clipartkey.com/mpngs/m/34-347920_break-up-clipart-student-debate-feedback-png.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-text"> {{ ctg }} </h4>
+            </div>
+        </div>
+    </a >
+    </div>
+{% endfor %}
+</div>
+
+
+{% endblock %}
