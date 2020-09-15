@@ -14,7 +14,7 @@
                 <tr>
                     <td> {{ motion.tournament.date |date:"Y-m-d" }} </td>
 
-                    <td> <a href="#"> {{ motion.tournament }} </a> </td>
+                    <td> <a href="{% url 'tournament_details' motion.tournament.id %}"> {{ motion.tournament }} </a> </td>
                     <td> {{ motion.round }} </td>
                     <td> {{ motion.motion_text }} </td>
                     <td>

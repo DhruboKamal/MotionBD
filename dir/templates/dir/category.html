@@ -4,15 +4,9 @@
 <div class='row'>
 {% for ctg in all_categories %}
 
-    <div class="col col-md-3 col-sm-4">
+    <div class="col col-md-6 col-sm-12">
     <a href="{% url 'category_all' ctg.pk %}">
-
-        <div class="card" style="">
-            <img src="https://www.clipartkey.com/mpngs/m/34-347920_break-up-clipart-student-debate-feedback-png.png" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-text"> {{ ctg }} </h4>
-            </div>
-        </div>
+        <h6 class=""> {{ ctg }} </h6>
     </a >
     </div>
 {% endfor %}

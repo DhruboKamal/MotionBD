@@ -16,7 +16,7 @@ class Tournament (models.Model):
 
 class Category(models.Model):
     category_text = models.CharField(max_length=50)
-    alt_text = models.CharField(max_length=200)
+    alt_text = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return self.category_text

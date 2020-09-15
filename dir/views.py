@@ -70,7 +70,7 @@ def search(request):
 
 
 def categories(request):
-    return render(request, 'dir/category.html', {'all_categories': Category.objects.all()})
+    return render(request, 'dir/category.html', {'all_categories': Category.objects.all().order_by('category_text')})
 
 
 def category_all(request, category_id):
