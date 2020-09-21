@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404
+from django.db.models import Q
 from .models import Tournament, Motion, Category
 
 
@@ -64,8 +65,8 @@ def search(request):
     if fmt and fmt != 'all':
         all_motions = all_motions.filter(tournament__format=fmt)
     if kw:
-        all_motions = all_motions.filter(motion_text__contains=kw)
-    context = {'all_motions': all_motions, 'ln': ln, 'fmt': fmt}
+        all_motions = all_motions.filter(Q(motion_text__contains=kw) | Q(category__category_text__contains=kw) | Q(category__alt_text__contains=kw) | Q(tournament__tournament_name__contains=kw))
+    context = {'all_motions': all_motions, 'ln': ln, 'fmt': fmt, 'kw': kw}
     return render(request, 'dir/search.html', context)
 
 

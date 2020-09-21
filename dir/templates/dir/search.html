@@ -1,11 +1,11 @@
 {% extends 'dir/base.html' %}
 {% block content %}
-<div class="card">
-    <div class="container">
-        <h3 class="display-4">Search Motions</h3>
-        <p class="lead">Search for motions by keyword, category, or tournament.</p>
-        <!-- Search form -->
-        <form action="" method="GET" class="form">
+    <div class="card">
+        <div class="container">
+            <h1>Search Motions</h1>
+            <p class="lead">Search for motions by keyword, category, or tournament.</p>
+            <!-- Search form -->
+            <p action="" method="GET" class="form">
             <p> Language:
                 <select name="Lang" class="">
                     <option value="both"> Both </option>
@@ -19,19 +19,20 @@
                     <option value="bp"> BP </option>
                     <option value="3v3"> 3v3 </option>
                 </select>
+
+            <div class="col-md-6 ">
+                <input class="form-control" type="text" name="KeyWord" placeholder="e.g. Economics, নারীবাদ, BUETDC Nationals" aria-label="Search">
+                <!-- input type="submit" value="Filter" -->
+                <br><button type="submit" class="btn btn-success"> Search </button>
+            </div>
             </p>
-            <input class="form-control" type="text" name="KeyWord" placeholder="Search" aria-label="Search">
-            <!-- input type="submit" value="Filter" -->
-            <br><button type="submit" class="btn btn-success"> Search </button>
+            </form>
 
-            <br><br>
-        </form>
-
+        </div>
     </div>
-</div>
-<div>
-Search Results:
-{% include 'dir/motiontable.html' %}
-</div>
+    <div>
+        Search Results:
+        {% include 'dir/motiontable.html' %}
+    </div>
 
 {% endblock %}
